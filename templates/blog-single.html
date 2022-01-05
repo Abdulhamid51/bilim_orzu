@@ -1,0 +1,176 @@
+{% extends 'sitebar.html' %}
+{% load static %}
+
+{% block sitebar %}
+
+
+	<!-- section main content -->
+	<section class="main-content mt-3">
+		<div class="container-xl">
+
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/">Bosh sahifa</a></li>
+                    <li class="breadcrumb-item"><a href="/yangiliklar/">Yangiliklar</a></li>
+                </ol>
+            </nav>
+
+			<div class="row gy-4">
+
+				<div class="col-lg-8">
+					<!-- post single -->
+                    <div class="post post-single">
+						<!-- post header -->
+						<div class="post-header">
+							<h1 class="title mt-0 mb-3">{{news.title}}</h1><li class="list-inline-item">{{news.date}}</li>
+							<ul class="meta list-inline mb-0">
+								<li class="list-inline-item"><a href="#"><img src="{{news.author.avatar.url}}" class="avatar" alt="author"/>{{news.author.user.first_name|truncatechars:2}} {{news.author.user.last_name}}</a></li>
+								<li class="list-inline-item"><a href="#">{{news.category}}</a></li>
+								<li class="list-inline-item"><i class="icon-bubble"></i> ({{comments.all.count}})</li>
+							</ul>
+						</div>
+						<!-- featured image -->
+						
+						{% if news.video %}
+						<iframe width="100%" height="415" src="https://www.youtube.com/embed/{{news.video}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+						{% else %}
+						<div class="featured-image">
+							<img src="{{news.image.url}}" alt="post-title" />
+						</div>
+						{% endif %}
+						<!-- post content -->
+						<div class="post-content clearfix">
+							<p>{{news.body}}</p>
+
+							<figure class="figure">
+								<figcaption class="figure-caption text-center">Qo'shimcha rasmlar:</figcaption>
+							</figure>
+
+							<div class="row">
+								{% for gel in news.gellary.all %}
+								<div class="col-md-4">
+									<img src="{{gel.image.url}}" class="rounded alignleft" alt="...">
+								</div>
+								{% endfor %}
+							</div>
+								
+						</div>
+						<!-- post bottom section -->
+						<div class="post-bottom">
+							<div class="row d-flex align-items-center">
+								<div class="col-md-6 col-12 text-center text-md-start">
+									<!-- tags -->
+									<a href="#" class="tag">#Trending</a>
+								</div>
+								<div class="col-md-6 col-12">
+									<!-- social icons -->
+									<ul class="social-icons list-unstyled list-inline mb-0 float-md-end">
+										<li class="list-inline-item"><a href="#"><i class="fab fa-telegram-plane"></i></a></li>
+										<li class="list-inline-item"><a href="#"><i class="fab fa-instagram"></i></a></li>
+										<li class="list-inline-item"><a href="#"><i class="fab fa-youtube"></i></a></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+
+                    </div>
+
+					<div class="spacer" data-height="50"></div>
+
+					<div class="about-author padding-30 rounded">
+						<div class="thumb">
+							<img src="{{news.author.avatar.url}}" alt="Katen Doe" />
+						</div>
+						<div class="details">
+							<h4 class="name"><a href="#">{{news.author.user.first_name}} {{news.author.user.last_name}}</a></h4>
+							<p>{{news.author.info}}</p>
+							<!-- social icons -->
+							<ul class="social-icons list-unstyled list-inline mb-0">
+								<li class="list-inline-item"><a href="#"><i class="fab fa-telegram-plane"></i></a></li>
+								<li class="list-inline-item"><a href="#"><i class="fab fa-instagram"></i></a></li>
+								<li class="list-inline-item"><a href="#"><i class="fab fa-youtube"></i></a></li>
+							</ul>
+						</div>
+					</div>
+
+					<div class="spacer" data-height="50"></div>
+
+					<!-- section header -->
+					<div class="section-header">
+						<h3 class="section-title">Fikrlar ({{comments.all.count}})</h3>
+						<img src="/static/images/wave.svg" class="wave" alt="wave" />
+						
+					</div>
+					<!-- post comments -->
+					<div class="comments bordered padding-30 rounded">
+
+						<ul class="comments commments">
+							<!-- comment item -->
+							
+							{% for com in comments %}
+							<li class="comment rounded">
+								<div class="thumb">
+									<img src="/static/images/other/comment-1.png" alt="John Doe" />
+								</div>
+								<div class="details">
+									<h4 class="name"><a href="#">{{com.name}} {{com.surname}}</a></h4>
+									<span class="date">{{com.date}}</span>
+									<p>{{com.message}}</p>
+								</div>
+							</li>
+							{% endfor %}
+								
+							
+						</ul>
+					</div>
+
+					<div class="spacer" data-height="50"></div>
+
+					<!-- section header -->
+					<div class="section-header">
+						<h3 class="section-title">Fikr qoldirish</h3>
+						<img src="/static/images/wave.svg" class="wave" alt="wave" />
+						<div class="messages_pro"></div>
+					</div>
+					<!-- comment form -->
+					<div class="comment-form rounded bordered padding-30">
+
+						<form id="comment-form" class="comment-form" method="POST">
+							<div class="messages"></div>
+							
+							<div class="row">
+								<div style="display: none;" class="news_id" data-id="{{news.id}}"></div>
+
+								<div class="column col-md-12">
+									<!-- Comment textarea -->
+									<div class="form-group">
+										<textarea class="form-control com_body"  name="fikr" rows="4" placeholder="Fikringiz..." required></textarea>
+									</div>
+								</div>
+
+								<div class="column col-md-6">
+									<!-- Name input -->
+									<div class="form-group">
+										<input type="text"  name="name" class="form-control com_name" placeholder="Ismingiz" required>
+									</div>
+								</div>
+
+								<div class="column col-md-6">
+									<!-- SurName input -->
+									<div class="form-group">
+										<input type="text"  name="surname" class="form-control com_surname" placeholder="Familiyangiz" required>
+									</div>
+								</div>
+						
+							</div>
+	
+							<button type="button" class="btn btn-default com_submit">Tasdiqlash</button><!-- Submit Button -->
+	
+						</form>
+					</div>
+                </div>
+
+
+	
+	{% endblock sitebar %}
+	

@@ -1,0 +1,91 @@
+{% extends 'sitebar.html' %}
+{% load static %}
+
+{% block sitebar %}
+
+
+	<!-- section main content -->
+	<section class="main-content mt-3">
+		<div class="container-xl">
+
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/">Bosh sahifa</a></li>
+                    <li class="breadcrumb-item"><a href="/elonlar/">E'lonlar</a></li>
+                </ol>
+            </nav>
+
+			<div class="row gy-4">
+
+				<div class="col-lg-8">
+					<!-- post single -->
+                    <div class="post post-single">
+						<!-- post header -->
+						<div class="post-header">
+							<h1 class="title mt-0 mb-3">{{repo.title}}</h1>
+							<ul class="meta list-inline mb-0">
+								<li class="list-inline-item"><a href="#"><img src="/static/images/stem.jpg" class="avatar" alt="author"/>STEM School</a></li>
+								<li class="list-inline-item"><a href="#">{{repo.category}}</a></li>
+								<li class="list-inline-item">{{repo.date}}</li>
+							</ul>
+						</div>
+						<!-- featured image -->
+						<div class="featured-image">
+							<img src="{{repo.image.url}}" alt="post-title" />
+						</div>
+						<!-- post content -->
+						<div class="post-content clearfix">
+							<p>{{repo.description}}</p>
+
+								
+						</div>
+						<!-- post bottom section -->
+						<div class="post-bottom">
+							<div class="row d-flex align-items-center">
+								<div class="col-md-6 col-12 text-center text-md-start">
+									<!-- tags -->
+									<a href="#" class="tag">#Trending</a>
+								</div>
+								<div class="col-md-6 col-12">
+									<!-- social icons -->
+									<ul class="social-icons list-unstyled list-inline mb-0 float-md-end">
+										<li class="list-inline-item"><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+										<li class="list-inline-item"><a href="#"><i class="fab fa-instagram"></i></a></li>
+										<li class="list-inline-item"><a href="#"><i class="fab fa-telegram-plane"></i></a></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+
+                    </div>
+
+					<div class="spacer" data-height="50"></div>
+
+					<div class="about-author padding-30 rounded">
+						<div class="thumb">
+							<img src="/static/images/stem.jpg" alt="Katen Doe" />
+						</div>
+						<div class="details">
+							<h4 class="name"><a href="#">STEM School</a></h4>
+							<p>E'lonlarimizga befarq bo'lmang</p>
+							<!-- social icons -->
+							<ul class="social-icons list-unstyled list-inline mb-0">
+								<li class="list-inline-item"><a href="#"><i class="fab fa-instagram"></i></a></li>
+								<li class="list-inline-item"><a href="#"><i class="fab fa-youtube"></i></a></li>
+								<li class="list-inline-item"><a href="#"><i class="fab fa-telegram"></i></a></li>
+							</ul>
+						</div>
+					</div>
+
+					<div class="spacer" data-height="50"></div>
+
+					
+
+					<div class="spacer" data-height="50"></div>
+
+					<!-- section header -->
+					
+                </div>
+
+	{% endblock sitebar %}
+	

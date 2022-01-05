@@ -1,0 +1,78 @@
+{% extends 'sitebar.html' %}
+{% load static %}
+
+{% block sitebar %}
+<section class="page-header">
+    <div class="container-xl">
+        <div class="text-center">
+            <h1 class="mt-0 mb-2">Yangiliklar</h1>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb justify-content-center mb-0">
+                    <li class="breadcrumb-item"><a href="#">Bosh sahifa</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Yangiliklar</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+</section>
+
+<!-- section main content -->
+<section class="main-content">
+    <div class="container-xl">
+
+        <div class="row gy-4">
+
+            <div class="col-lg-8">
+
+                <div class="row gy-4">
+                    
+                    {% for news in news %}
+                    <div class="col-sm-6">
+                        <!-- post -->
+                        <div class="post post-grid rounded bordered">
+                            <div class="thumb top-rounded">
+                                <a href="/yangilik/{{news.pk}}" class="category-badge position-absolute">{{news.category}}</a>
+                                <span class="post-format">
+                                    <i class="icon-picture"></i>
+                                </span>
+                                <a href="/yangilik/{{news.pk}}">
+                                    <div class="inner">
+                                        <img src="{{news.image.url}}" alt="post-title" />
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="details">
+                                <ul class="meta list-inline mb-0">
+                                    <li class="list-inline-item"><a href="#"><img src="{{news.author.avatar.url}}" class="avatar" alt="author"/>{{news.author.user.first_name}}</a></li>
+                                    <li class="list-inline-item">{{news.date}}</li>
+                                </ul>
+                                <h5 class="post-title mb-3 mt-3"><a href="/yangilik/{{news.pk}}">{{news.title|truncatewords:7}}</a></h5>
+                                <p class="excerpt mb-0">{{news.body|truncatewords:10}}</p>
+                            </div>
+                            <div class="post-bottom clearfix d-flex align-items-center">
+                                <div class="social-share me-auto">
+                                    <button class="toggle-button icon-share"></button>
+                                    <ul class="icons list-unstyled list-inline mb-0">
+                                        <li class="list-inline-item"><a href="#"><i class="fab fa-telegram-plane"></i></a></li>
+									<li class="list-inline-item"><a href="#"><i class="fab fa-instagram"></i></a></li>
+									<li class="list-inline-item"><a href="#"><i class="fab fa-youtube"></i></a></li>
+                                    </ul>
+                                </div>
+                                <div class="more-button float-end">
+                                    <a href="/yangilik/{{news.pk}}"><span class="icon-options"></span></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                        
+                    
+
+                </div>
+
+                
+            </div>
+
+
+{% endblock sitebar %}
+    

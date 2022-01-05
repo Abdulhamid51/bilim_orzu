@@ -1,0 +1,284 @@
+{% extends 'sitebar.html' %}
+{% load static %}
+
+
+{% block sitebar %}
+
+	
+<!-- hero section -->
+	<section id="hero">
+
+		<div class="container-xl">
+
+			<div class="row gy-4">
+
+				<div class="col-lg-8">
+					
+					<!-- featured post large -->
+					<div class="post featured-post-lg">
+						<div class="details clearfix">
+							<a href="/elonlar/" class="category-badge">Yangilik</a>
+							<h2 class="post-title"><a href="/elonlar/">Farzandingizni kelajagini biz bilan quring!</a></h2>
+							<ul class="meta list-inline mb-0">
+								<li class="list-inline-item"><a href="/elonlar/">STEM School</a></li>
+							</ul>
+						</div>
+						<a href="/elonlar/">
+							<div class="thumb rounded">
+								<div class="inner data-bg-image" data-bg-image="/static/images/base.jpg"></div>
+							</div>
+						</a>
+					</div>
+
+				</div>
+
+				<div class="col-lg-4">
+
+					<!-- post tabs -->
+					<div class="post-tabs rounded bordered">
+						<!-- tab navs -->
+						<ul class="nav nav-tabs nav-pills nav-fill" id="postsTab" role="tablist">
+							<li class="nav-item" role="presentation"><button aria-controls="popular" aria-selected="true" class="nav-link active" data-bs-target="#popular" data-bs-toggle="tab" id="popular-tab" role="tab" type="button">So'ngi</button></li>
+							<li class="nav-item" role="presentation"><button aria-controls="recent" aria-selected="false" class="nav-link" data-bs-target="#recent" data-bs-toggle="tab" id="recent-tab" role="tab" type="button">Mashxur</button></li>
+						</ul>
+						<!-- tab contents -->
+						<div class="tab-content" id="postsTabContent">
+							<!-- loader -->
+							<div class="lds-dual-ring"></div>
+							<!-- popular posts -->
+							<div aria-labelledby="popular-tab" class="tab-pane fade show active" id="popular" role="tabpanel">
+								<!-- post -->
+								
+								{% for last in last_news %}
+									
+								<div class="post post-list-sm circle">
+									<div class="thumb circle">
+										<a href="{% url 'main:news_detail' last.pk %}">
+											<div class="inner">
+												<img src="{{last.author.avatar.url}}" alt="post-title" />
+											</div>
+										</a>
+									</div>
+									<div class="details clearfix">
+										<h6 class="post-title my-0"><a href="{% url 'main:news_detail' last.pk %}">{{last.title}}</a></h6>
+										<ul class="meta list-inline mt-1 mb-0">
+											<li class="list-inline-item">{{last.date}}</li>
+										</ul>
+									</div>
+								</div>
+								
+								{% endfor %}
+
+							</div>
+							<!-- recent posts -->
+							<div aria-labelledby="recent-tab" class="tab-pane fade" id="recent" role="tabpanel">
+								<!-- post -->
+								
+								{% for random in random_news %}
+									
+								<div class="post post-list-sm circle">
+									<div class="thumb circle">
+										<a href="{% url 'main:news_detail' random.pk %}">
+											<div class="inner">
+												<img src="{{random.author.avatar.url}}" alt="post-title" />
+											</div>
+										</a>
+									</div>
+									<div class="details clearfix">
+										<h6 class="post-title my-0"><a href="{% url 'main:news_detail' random.pk %}">{{random.title}}</a></h6>
+										<ul class="meta list-inline mt-1 mb-0">
+											<li class="list-inline-item">{{random.date}}</li>
+										</ul>
+									</div>
+								</div>
+								
+								{% endfor %}
+
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+
+		</div>
+
+	</section>
+
+	<!-- section main content -->
+	<section class="main-content">
+		<div class="container-xl">
+
+			<div class="row gy-4">
+
+				<div class="col-lg-8">
+
+					<!-- section header -->
+					<div class="section-header">
+						<h3 class="section-title">Yangiliklar</h3>
+						<img src="/static/images/wave.svg" class="wave" alt="wave" />
+					</div>
+
+					<div class="padding-30 rounded bordered">
+						<div class="row gy-5">
+							<div class="col-sm-6">
+								<!-- post -->
+								
+								<div class="post">
+									<div class="thumb rounded">
+										<a href="category.html" class="category-badge position-absolute">{{last.category}}</a>
+										<span class="post-format">
+											<i class="icon-picture"></i>
+										</span>
+										<a href="{% url 'main:news_detail' last.pk %}">
+											<div class="inner">
+												<img src="{{last.image.url}}" alt="post-title" />
+											</div>
+										</a>
+									</div>
+									<ul class="meta list-inline mt-4 mb-0">
+										<li class="list-inline-item"><a href="#"><img src="{{last.author.avatar.url}}" class="avatar" alt="author"/>{{last.author.user.first_name}}</a></li>
+										<li class="list-inline-item">{{last.date}}</li>
+									</ul>
+									<h5 class="post-title mb-3 mt-3"><a href="{% url 'main:news_detail' last.pk %}">{{last.title}}</a></h5>
+									<p class="excerpt mb-0">{{last.body|truncatewords:40}}</p>
+								</div>
+
+							</div>
+							<div class="col-sm-6">
+								<!-- post -->
+								
+								{% for random in random_news %}
+									
+								<div class="post post-list-sm square">
+									<div class="thumb rounded">
+										<a href="{% url 'main:news_detail' random.pk %}">
+											<div class="inner">
+												<img src="{{random.image.url}}" alt="post-title" />
+											</div>
+										</a>
+									</div>
+									<div class="details clearfix">
+										<h6 class="post-title my-0"><a href="{% url 'main:news_detail' random.pk %}">{{random.title|truncatechars:46}}</a></h6>
+										<ul class="meta list-inline mt-1 mb-0">
+											<li class="list-inline-item">{{random.date}}</li>
+										</ul>
+									</div>
+								</div>
+								
+								{% endfor %}
+
+							</div>
+						</div>
+					</div>
+
+					<div class="spacer" data-height="50"></div>
+
+
+					<!-- section header -->
+					
+
+					<div class="spacer" data-height="50"></div>
+
+					<!-- section header -->
+					<div class="section-header">
+						<h3 class="section-title">E'lonlar</h3>
+						<img src="/static/images/wave.svg" class="wave" alt="wave" />
+						<div class="slick-arrows-top">
+							<button type="button" data-role="none" class="carousel-topNav-prev slick-custom-buttons" aria-label="Previous"><i class="icon-arrow-left"></i></button>
+							<button type="button" data-role="none" class="carousel-topNav-next slick-custom-buttons" aria-label="Next"><i class="icon-arrow-right"></i></button>
+						</div>
+					</div>
+
+					<div class="row post-carousel-twoCol post-carousel">
+						<!-- post -->
+
+						{% for report in reports %}
+						<div class="post post-over-content col-md-6">
+							<div class="details clearfix">
+								<a href="category.html" class="category-badge">{{report.category}}</a>
+								<h4 class="post-title"><a href="{% url 'main:report_detail' report.pk %}">{{report.title}}</a></h4>
+								<ul class="meta list-inline mb-0">
+									<li class="list-inline-item"><a href="/elonlar/">STEM School</a></li>
+									<li class="list-inline-item">{{report.date}}</li>
+								</ul>
+							</div>
+							<a href="{% url 'main:report_detail' report.pk %}">
+								<div class="thumb rounded">
+									<div class="inner">
+										<img src="{{report.image.url}}" alt="thumb" />
+									</div>
+								</div>
+							</a>
+						</div>
+						{% endfor %}
+							
+					</div>
+
+					<div class="spacer" data-height="50"></div>
+
+					<!-- section header -->
+					<div class="section-header">
+						<h3 class="section-title">So'ngi yangiliklar</h3>
+						<img src="/static/images/wave.svg" class="wave" alt="wave" />
+					</div>
+
+					<div class="padding-30 rounded bordered">
+
+						<div class="row">
+							
+							{% for lasts in last_news %}
+							<div class="col-md-12 col-sm-6">
+								<!-- post -->
+								<div class="post post-list clearfix">
+									<div class="thumb rounded">
+										<span class="post-format-sm">
+											<i class="icon-picture"></i>
+										</span>
+										<a href="{% url 'main:news_detail' lasts.pk %}">
+											<div class="inner">
+												<img src="{{lasts.image.url}}" alt="post-title" />
+											</div>
+										</a>
+									</div>
+									<div class="details">
+										<ul class="meta list-inline mb-3">
+											<li class="list-inline-item"><a href="#"><img src="{{lasts.author.avatar.url}}" class="avatar" alt="author"/>{{last.author.user.first_name}}</a></li>
+											<li class="list-inline-item"><a href="#">{{lasts.category}}</a></li>
+											<li class="list-inline-item">{{lasts.date}}</li>
+										</ul>
+										<h5 class="post-title"><a href="{% url 'main:news_detail' lasts.pk %}">{{lasts.title|truncatewords:7}}</a></h5>
+										<p class="excerpt mb-0">{{lasts.body|truncatewords:10}}</p>
+										<div class="post-bottom clearfix d-flex align-items-center">
+											<div class="social-share me-auto">
+												<button class="toggle-button icon-share"></button>
+												<ul class="icons list-unstyled list-inline mb-0">
+													<li class="list-inline-item"><a href="#"><i class="fab fa-telegram-plane"></i></a></li>
+													<li class="list-inline-item"><a href="#"><i class="fab fa-instagram"></i></a></li>
+													<li class="list-inline-item"><a href="#"><i class="fab fa-youtube"></i></a></li>
+												</ul>
+											</div>
+											<div class="more-button float-end">
+												<a href="{% url 'main:news_detail' lasts.pk %}"><span class="icon-options"></span></a>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							{% endfor %}
+								
+							
+							
+						</div
+						>
+						<!-- load more button -->
+						<div class="text-center">
+							<a href="/yangiliklar/" class="btn btn-simple">Ko'proq</a>
+						</div>
+
+					</div>
+
+				</div>
+	
+	{% endblock sitebar %}

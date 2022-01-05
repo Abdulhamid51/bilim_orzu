@@ -1,0 +1,84 @@
+{% extends 'sitebar.html' %}
+{% load static %}
+
+{% block sitebar %}
+    
+    <section class="page-header">
+        <div class="container-xl">
+            <div class="text-center">
+                <h1 class="mt-0 mb-2">Bizning jamoa</h1>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb justify-content-center mb-0">
+                        <li class="breadcrumb-item"><a href="/">Bosh sahifa</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Bizning Jamoa</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </section>
+
+	<!-- section main content -->
+	<section class="main-content">
+		<div class="container-xl">
+
+			<div class="row gy-4">
+
+				<div class="col-lg-8">
+
+                    <div class="row gy-4">
+						{% for teacher in teachers %}
+                        <div class="col-sm-6">
+                            <!-- post -->
+							
+							<div class="post post-grid rounded bordered">
+                                <div class="thumb top-rounded">
+									
+									{% if teacher.class_name %}
+                                    <a href="#" class="category-badge position-absolute">{{teacher.class_name}}</a>
+									{% endif %}
+										
+                                    <a href="#">
+                                        <div class="inner">
+                                            <img src="{{teacher.image.url}}" alt="post-title" />
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="details">
+                                    <h5 class="post-title mb-3 mt-3"><a href="#">{{teacher.user.first_name}} {{teacher.user.last_name}}</a></h5>
+                                    <p class="excerpt mb-0">{{teacher.info}}</p>
+                                </div>
+                                <div class="post-bottom clearfix d-flex align-items-center">
+                                    <div class="social-share me-auto">
+                                        <button class="toggle-button icon-share"></button>
+                                        <ul class="icons list-unstyled list-inline mb-0">
+                                            <li class="list-inline-item"><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                                            <li class="list-inline-item"><a href="#"><i class="fab fa-telegram-plane"></i></a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="more-button float-end">
+                                        <a href="#"><span class="icon-options"></span></a>
+                                    </div>
+                                </div>
+                            </div>
+							
+                            
+                        </div>
+						
+						{% endfor %}
+                    </div>
+
+					<!-- <nav>
+						<ul class="pagination justify-content-center">
+							<li class="page-item active" aria-current="page">
+								<span class="page-link">1</span>
+							</li>
+							<li class="page-item"><a class="page-link" href="#">2</a></li>
+							<li class="page-item"><a class="page-link" href="#">3</a></li>
+						</ul>
+					</nav> -->
+
+				</div>
+
+
+{% endblock sitebar %}
+    

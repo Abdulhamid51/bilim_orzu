@@ -1,0 +1,90 @@
+{% extends 'sitebar.html' %}
+{% load static %}
+
+{% block sitebar %}
+
+	
+
+    <section class="hero-carousel">
+        <div class="container-xl">
+            <div class="post-carousel-lg">
+                <!-- post -->
+
+				{% for report in reports %}
+				<div class="post featured-post-xl">
+                    <div class="details clearfix">
+                        <a href="/elon/{{report.pk}}" class="category-badge lg">{{report.category}}</a>
+                        <h4 class="post-title"><a href="/elon/{{report.pk}}">{{report.title}}</a></h4>
+                        <ul class="meta list-inline mb-0">
+                            <li class="list-inline-item"><a href="/elonlar/">STEM School</a></li>
+                            <li class="list-inline-item">{{report.date}}</li>
+                        </ul>
+                    </div>
+                    <a href="/elon/{{report.pk}}">
+                        <div class="thumb rounded">
+                            <div class="inner data-bg-image" data-bg-image="{{report.image.url}}"></div>
+                        </div>
+                    </a>
+                </div>
+				{% endfor %}
+					
+            </div>
+        </div>
+    </section>
+
+	<!-- section main content -->
+	<section class="main-content">
+		<div class="container-xl">
+
+			<div class="row gy-4">
+
+				<div class="col-lg-8">
+
+					<!-- post -->
+					{% for report in reports %}
+							
+					<div class="post post-classic rounded bordered">
+						<div class="thumb top-rounded">
+							<a href="/elon/{{report.pk}}" class="category-badge lg position-absolute">{{report.category}}</a>
+							<span class="post-format">
+								<i class="icon-picture"></i>
+							</span>
+							<a href="/elon/{{report.pk}}">
+								<div class="inner">
+									<img src="{{report.image.url}}" alt="post-title" />
+								</div>
+							</a>
+						</div>
+						<div class="details">
+							<ul class="meta list-inline mb-0">
+								<li class="list-inline-item"><a href="/jamoa/"><img src="/static/images/stem.jpg" class="avatar" alt="author"/>STEM School</a></li>
+								<li class="list-inline-item">{{report.date}}</li>
+							</ul>
+							<h5 class="post-title mb-3 mt-3"><a href="/elon/{{report.pk}}">{{report.title}}</a></h5>
+							<p class="excerpt mb-0">{{report.description|truncatewords:12}}</p>
+						</div>
+						<div class="post-bottom clearfix d-flex align-items-center">
+							<div class="social-share me-auto">
+								<button class="toggle-button icon-share"></button>
+								<ul class="icons list-unstyled list-inline mb-0">
+									<li class="list-inline-item"><a href="#"><i class="fab fa-telegram-plane"></i></a></li>
+									<li class="list-inline-item"><a href="#"><i class="fab fa-instagram"></i></a></li>
+									<li class="list-inline-item"><a href="#"><i class="fab fa-youtube"></i></a></li>
+								</ul>
+							</div>
+							<div class="float-end d-none d-md-block">
+								<a href="/elon/{{report.pk}}" class="more-link">Davomi<i class="icon-arrow-right"></i></a>
+							</div>
+							<div class="more-button d-block d-md-none float-end">
+								<a href="/elon/{{report.pk}}"><span class="icon-options"></span></a>
+							</div>
+						</div>
+					</div>
+					{% endfor %}
+					
+
+
+				</div>
+			
+	
+	{% endblock sitebar %}
